@@ -14,7 +14,10 @@
     height="64"
     class="mr-2"
   />
-  <CardHeaderProgress />
+  <div class="flex flex-col w-full mt-2">
+    <h3 class="font-medium">Driller</h3>
+    <CardHeaderProgress percentage={100} />
+  </div>
   <button class="flex items-center ml-2" on:click>
     <svg
       xmlns="http://www.w3.org/2000/svg"

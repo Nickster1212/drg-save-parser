@@ -5,7 +5,7 @@
   $: path = $page.path;
 </script>
 
-<header>
+<header class="px-6 pt-6">
   <div class="flex justify-between">
     <div class="text-xl flex leading-9">
       <img

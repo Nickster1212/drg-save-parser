@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex justify-center">
-  <div class="w-3/4 px-6 pt-6">
+  <div class="w-3/4">
     <Header />
     <main>
       <slot />

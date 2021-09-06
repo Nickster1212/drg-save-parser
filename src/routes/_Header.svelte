@@ -21,10 +21,10 @@
   </div>
   <nav class="flex space-x-6 mt-5">
     <a href="/" class:active={path === '/'}>Overview</a>
-    <a href="overclocks" class:active={path === '/overclocks'}> Overclocks </a>
-    <a href="frameworks" class:active={path === '/frameworks'}> Frameworks </a>
+    <a href="overclocks" class:active={path === '/overclocks'}>Overclocks</a>
+    <a href="frameworks" class:active={path === '/frameworks'}>Frameworks</a>
     <a href="armor" class:active={path === '/armor'}>Armor</a>
-    <a href="pickaxes" class:active={path === '/pickaxes'}> Pickaxes </a>
+    <a href="pickaxes" class:active={path === '/pickaxes'}>Pickaxes</a>
   </nav>
 </header>
 

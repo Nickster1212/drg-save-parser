@@ -1,6 +1,7 @@
 {
   "recommendations": [
       "ardenivanov.svelte-intellisense",
-      "svelte.svelte-vscode"
+      "svelte.svelte-vscode",
+      "esbenp.prettier-vscode"
   ]
 }

@@ -43,3 +43,10 @@
     </svg>
   </button>
 </header>
+
+<style>
+  header > img {
+    height: 64px;
+    width: 64px;
+  }
+</style>

@@ -1,15 +1,45 @@
 import { Dexie } from 'dexie';
-import { ArmorPaintjobNames, CommonArmorPaintjobNames } from 'data/armor';
-import { Framework } from 'data/frameworks';
-import {
+import type {
+  ArmorPaintjobNames,
+  CommonArmorPaintjobNames,
+} from '$lib/types/armor';
+import type { Framework } from '$lib/types/frameworks';
+import type {
   PickaxeSets,
   PickaxeParts,
   PickaxeUniquePartNames,
-} from 'data/pickaxes';
-import { Miner } from 'utils/miner';
-import { MinerWeapon } from 'utils/weapons';
+} from '$lib/types/pickaxes';
+import type { Miner } from '$lib/types/miner';
+import type { MinerWeapon } from '$lib/types/weapons';
+import { readable } from 'svelte/store';
 
-export class AppDatabase extends Dexie {
+export type OverclockEntry = {
+  weapon: MinerWeapon<Miner>;
+  name: string;
+  isForged: boolean;
+};
+
+export type FrameworkEntry = { weapon: MinerWeapon<Miner>; name: Framework };
+
+export type PickaxeEntry = {
+  name: typeof PickaxeSets[number];
+  part: PickaxeParts;
+};
+
+export type PickaxeUniquePartEntry = {
+  name: typeof PickaxeUniquePartNames[number];
+};
+
+export type ArmorPaintjobEntry = {
+  miner: Miner;
+  name: typeof ArmorPaintjobNames[Miner][number];
+};
+
+export type CommonArmorPaintjobEntry = {
+  name: typeof CommonArmorPaintjobNames[number];
+};
+
+class AppDatabase extends Dexie {
   overclocks: Dexie.Table<OverclockEntry, number>;
   frameworks: Dexie.Table<FrameworkEntry, number>;
   pickaxes: Dexie.Table<PickaxeEntry, number>;
@@ -46,28 +76,4 @@ export class AppDatabase extends Dexie {
   clearAll = () => Promise.all(this.tables.map((t) => t.clear()));
 }
 
-export type OverclockEntry = {
-  weapon: MinerWeapon<Miner>;
-  name: string;
-  isForged: boolean;
-};
-
-export type FrameworkEntry = { weapon: MinerWeapon<Miner>; name: Framework };
-
-export type PickaxeEntry = {
-  name: typeof PickaxeSets[number];
-  part: PickaxeParts;
-};
-
-export type PickaxeUniquePartEntry = {
-  name: typeof PickaxeUniquePartNames[number];
-};
-
-export type ArmorPaintjobEntry = {
-  miner: Miner;
-  name: typeof ArmorPaintjobNames[Miner][number];
-};
-
-export type CommonArmorPaintjobEntry = {
-  name: typeof CommonArmorPaintjobNames[number];
-};
+export const db = readable(new AppDatabase());

@@ -1,8 +1,8 @@
-import * as frames from 'assets/overclocks/frames';
-import * as icons from 'assets/overclocks/icons';
-import { Currency } from 'utils/currency';
-import { Miner } from 'utils/miner';
-import { MinerWeapon } from 'utils/weapons';
+import type * as frames from '$lib/assets/overclocks/frames';
+import type * as icons from '$lib/assets/overclocks/icons';
+import type { Currency } from './currency';
+import { Miner } from './miner';
+import type { MinerWeapon } from './weapons';
 
 // All currencies are optional except credits
 type Price = Partial<Record<Currency, number>> & { credits: number };

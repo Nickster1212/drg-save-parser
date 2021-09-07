@@ -1,6 +1,6 @@
-import * as FrameworkIcons from 'assets/frameworks';
-import { Miner } from 'utils/miner';
-import { MinerWeapon } from 'utils/weapons';
+import * as FrameworkIcons from '$lib/assets/frameworks';
+import type { Miner } from './miner';
+import type { MinerWeapon } from './weapons';
 
 export const Frameworks = [
   'Custom Engineered',

@@ -1,4 +1,4 @@
-import * as currencies from 'assets/currencies';
+import * as currencies from '$lib/assets/currencies';
 
 export type Currency =
   | 'credits'

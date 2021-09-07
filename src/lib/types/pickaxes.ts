@@ -1,6 +1,6 @@
-import * as paintjobIcons from 'assets/pickaxes/paintjobs';
-import * as skinIcons from 'assets/pickaxes/skins';
-import * as uniquePartIcons from 'assets/pickaxes/uniqueParts';
+import * as paintjobIcons from '$lib/assets/pickaxes/paintjobs';
+import * as skinIcons from '$lib/assets/pickaxes/skins';
+import * as uniquePartIcons from '$lib/assets/pickaxes/uniqueParts';
 
 // Unpacked DRG source file name suffixes included in comment
 // Company Standard set deliberately excluded

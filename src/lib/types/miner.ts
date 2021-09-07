@@ -1,4 +1,4 @@
-import * as Avatars from 'assets/portraits';
+import * as Avatars from '$lib/assets/portraits';
 
 export enum Miner {
   Driller = 'Driller',

@@ -1,14 +1,18 @@
 <script lang="ts">
   import { assets } from '$app/paths';
+  import { MinerAvatar } from '$lib/types/miner';
 
   import CardHeaderProgress from './CardHeaderProgress.svelte';
+
+  console.log(MinerAvatar.Driller.png);
 
   export let expanded: boolean;
 </script>
 
 <header class="p-2 flex bg-gray-800">
   <img
-    src={`${assets}/portraits/Driller_portrait.png`}
+    srcset={MinerAvatar.Driller.png}
+    type="image/webp"
     alt="Driller portrait"
     width="64"
     height="64"

@@ -1,18 +1,13 @@
 <script lang="ts">
   import { assets } from '$app/paths';
-  import { MinerAvatar } from '$lib/types/miner';
-
   import CardHeaderProgress from './CardHeaderProgress.svelte';
-
-  console.log(MinerAvatar.Driller.png);
 
   export let expanded: boolean;
 </script>
 
-<header class="p-2 flex bg-gray-800">
+<header class="p-2 flex bg-gray-800" role="button" on:click>
   <img
-    srcset={MinerAvatar.Driller.png}
-    type="image/webp"
+    src={`${assets}/portraits/Driller_portrait.png`}
     alt="Driller portrait"
     width="64"
     height="64"
@@ -22,7 +17,7 @@
     <h3 class="font-medium">Driller</h3>
     <CardHeaderProgress percentage={100} />
   </div>
-  <button class="flex items-center ml-2" on:click>
+  <button class="flex items-center ml-2">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-5 w-5"

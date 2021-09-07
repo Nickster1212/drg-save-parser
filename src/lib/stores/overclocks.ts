@@ -1,4 +1,4 @@
-import { readable, derived } from 'svelte/store';
+import { derived } from 'svelte/store';
 import type { OverclockEntry } from './db';
 import { liveQuery } from 'dexie';
 import { db } from './db';

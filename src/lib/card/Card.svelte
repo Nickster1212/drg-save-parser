@@ -11,7 +11,7 @@
 <section class="border border-b-0 last:border-b border-gray-500">
   <CardHeader {expanded} on:click={toggleExpand} />
   {#if expanded}
-    <div class="p-6 border-gray-500 border-t" transition:slide>
+    <div class="p-6 border-gray-500 border-t" transition:slide|local>
       <h4>Card Content</h4>
     </div>
   {/if}

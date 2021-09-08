@@ -8,5 +8,7 @@
   on:click
 >
   <div class="p-2 bg-yellow-300 text-black font-bold">{title}</div>
-  <div>Content!</div>
+  <div class="flex content-center justify-center p-4">
+    <slot />
+  </div>
 </div>

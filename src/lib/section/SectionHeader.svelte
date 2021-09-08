@@ -1,6 +1,6 @@
 <script lang="ts">
   import { assets } from '$app/paths';
-  import CardHeaderProgress from './CardHeaderProgress.svelte';
+  import SectionHeaderProgress from './SectionHeaderProgress.svelte';
 
   export let expanded: boolean;
 </script>
@@ -15,7 +15,7 @@
   />
   <div class="flex flex-col w-full mt-2">
     <h3 class="font-medium">Driller</h3>
-    <CardHeaderProgress percentage={100} />
+    <SectionHeaderProgress percentage={100} />
   </div>
   <button class="flex items-center ml-2">
     <svg

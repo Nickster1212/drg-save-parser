@@ -1,6 +1,6 @@
 <script lang="ts">
   import { slide } from 'svelte/transition';
-  import CardHeader from '$lib/card/CardHeader.svelte';
+  import SectionHeader from './SectionHeader.svelte';
 
   let expanded = true;
   function toggleExpand() {
@@ -9,7 +9,7 @@
 </script>
 
 <section class="border border-b-0 last:border-b border-gray-500">
-  <CardHeader {expanded} on:click={toggleExpand} />
+  <SectionHeader {expanded} on:click={toggleExpand} />
   {#if expanded}
     <div
       class="p-2 border-gray-500 border-t grid grid-cols-3"

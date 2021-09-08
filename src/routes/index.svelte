@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Card from '$lib/card/Card.svelte';
+  import Section from '$lib/section/Section.svelte';
 </script>
 
-<Card />
-<Card />
-<Card />
-<Card />
+<Section />
+<Section />
+<Section />
+<Section />

@@ -10,18 +10,15 @@
 </script>
 
 <section class="border border-b-0 last:border-b border-gray-500">
-  <SectionHeader {expanded} on:click={toggleExpand} />
+  <SectionHeader {expanded} on:click={toggleExpand}>
+    <slot name="header" />
+  </SectionHeader>
   {#if expanded}
     <div
       class="p-2 border-gray-500 border-t grid grid-cols-3"
       transition:slide|local
     >
-      <Card title="Lighter Tank" />
-      <Card title="Sticky Additive" />
-      <Card title="Compact Feed Valves" />
-      <Card title="Lighter Tank" />
-      <Card title="Sticky Additive" />
-      <Card title="Compact Feed Valves" />
+      <slot />
     </div>
   {/if}
 </section>

@@ -1,22 +1,9 @@
 <script lang="ts">
-  import { assets } from '$app/paths';
-  import SectionHeaderProgress from './SectionHeaderProgress.svelte';
-
   export let expanded: boolean;
 </script>
 
 <header class="p-2 flex bg-gray-800" role="button" on:click>
-  <img
-    src={`${assets}/portraits/Driller_portrait.png`}
-    alt="Driller portrait"
-    width="64"
-    height="64"
-    class="mr-2"
-  />
-  <div class="flex flex-col w-full mt-2">
-    <h3 class="font-medium">Driller</h3>
-    <SectionHeaderProgress percentage={100} />
-  </div>
+  <slot />
   <button class="flex items-center ml-2">
     <svg
       xmlns="http://www.w3.org/2000/svg"

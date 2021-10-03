@@ -1,7 +1,7 @@
 <script lang="ts">
   import { slide } from 'svelte/transition';
   import SectionHeader from './SectionHeader.svelte';
-  import Card from '$lib/card/Card.svelte';
+  import Card from '$lib/components/Card.svelte';
 
   let expanded = true;
   function toggleExpand() {

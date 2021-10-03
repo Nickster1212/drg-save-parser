@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { assets } from '$app/paths';
   import { page } from '$app/stores';
+  import { Assignment } from '$lib/assets/other';
+  import Image from '$lib/components/Image.svelte';
 
   $: path = $page.path;
 </script>
@@ -8,11 +9,7 @@
 <header class="px-6 pt-6">
   <div class="flex justify-between">
     <div class="text-xl flex leading-9">
-      <img
-        src={`${assets}/assignment.png`}
-        alt="Assignment Icon"
-        class="w-10 h-10 mr-3"
-      />
+      <Image src={Assignment} alt="Assignment Icon" class="w-10 h-10 mr-3" />
       <h1 class="font-semibold">DRG Completionist</h1>
     </div>
     <h2 class="text-gray-400 font-medium leading-10">

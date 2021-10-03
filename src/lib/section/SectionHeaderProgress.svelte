@@ -16,7 +16,7 @@
   .progress-bar {
     background: linear-gradient(
       to right,
-      rgb(209, 151, 36) 0%,
+      var(--start-color) 0%,
       rgb(135, 208, 104) 100%
     );
   }

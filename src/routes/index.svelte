@@ -1,6 +1,6 @@
 <script lang="ts">
   import Section from '$lib/section/Section.svelte';
-  import { Miner, MinerAvatar } from '$lib/types/miner';
+  import { Miner, MinerAvatar, MinerColor } from '$lib/types/miner';
   import { MinerWeapons } from '$lib/types/weapons';
   import { Overclocks } from '$lib/types/overclocks';
   import Card from '$lib/components/Card.svelte';
@@ -27,7 +27,10 @@
       />
       <div class="flex flex-col w-full mt-2">
         <h3 class="font-medium">{miner}</h3>
-        <SectionHeaderProgress percentage={100} />
+        <SectionHeaderProgress
+          percentage={100}
+          --start-color={MinerColor[miner]}
+        />
       </div>
     </svelte:fragment>
     <svelte:fragment>

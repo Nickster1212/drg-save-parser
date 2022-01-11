@@ -13,23 +13,17 @@
   export let miner: Miner;
 
   const weapons: readonly MinerWeapon<Miner>[] = MinerWeapons[miner];
-  const acquired_overclocks = derived(overclocks, ($overclocks) => {
-    if ($overclocks.loading === true) return [];
+  const acquired_overclock_count = derived(overclocks, ($overclocks) => {
+    if ($overclocks.loading === true) return 0;
     return $overclocks.overclocks.filter((overclock) =>
       weapons.includes(overclock.weapon)
-    );
+    ).length;
   });
-
-  let progress = 0;
-  $: {
-    const weapons: readonly MinerWeapon<Miner>[] = MinerWeapons[miner];
-    const overclock_count = weapons.reduce(
-      (acc, weapon) => acc + Overclocks[weapon].length,
-      0
-    );
-    const acquired_overclock_count = $acquired_overclocks.length;
-    progress = Math.round((acquired_overclock_count / overclock_count) * 100);
-  }
+  const overclock_count = weapons.reduce(
+    (acc, weapon) => acc + Overclocks[weapon].length,
+    0
+  );
+  $: progress = Math.round(($acquired_overclock_count / overclock_count) * 100);
 </script>
 
 <Section>

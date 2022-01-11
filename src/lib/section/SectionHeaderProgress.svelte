@@ -5,7 +5,7 @@
 <div class="flex mt-1 items-center">
   <div class="w-full h-2 rounded bg-gray-700 mr-2">
     <div
-      class="w-full h-full rounded progress-bar"
+      class="w-full h-full rounded progress-bar transition-all"
       style={`width: ${percentage}%;`}
     />
   </div>

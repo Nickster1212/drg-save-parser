@@ -10,10 +10,10 @@
   // the tooltip is positioned directly to the right of it, since the tooltip
   // needs to use absolute positioning
   let img: HTMLImageElement;
-  $: imgClientRect = img && img.getBoundingClientRect();
-  $: tooltipPosition = imgClientRect
-    ? `left: calc(${imgClientRect.right}px - 1rem);`
-    : '';
+  $: tooltipPosition =
+    hovering && img
+      ? `left: calc(${img.getBoundingClientRect().right}px);`
+      : '';
 
   let hovering: boolean = false;
   function enter() {

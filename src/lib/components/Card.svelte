@@ -17,7 +17,7 @@
   on:click
 >
   <div
-    class="font-bold border-gray-500 truncate"
+    class="font-bold border-gray-500 truncate transition-all"
     class:inactive={active === ActiveState.Inactive}
     class:active={active === ActiveState.Active}
     class:partial={active === ActiveState.Partial}

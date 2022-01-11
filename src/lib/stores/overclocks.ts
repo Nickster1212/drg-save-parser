@@ -1,20 +1,13 @@
-import { derived } from 'svelte/store';
-import type { OverclockEntry } from './db';
+import type { OverclockEntry } from '$lib/db';
 import { liveQuery } from 'dexie';
-import { db } from './db';
+import { db } from '$lib/db';
+import { readable } from 'svelte/store';
 
-export const overclocks = derived<
-  typeof db,
+export const overclocks = readable<
   { loading: true } | { loading: false; overclocks: OverclockEntry[] }
->(
-  db,
-  (database, set) => {
-    const querySubscription = liveQuery(() =>
-      database.overclocks.toArray()
-    ).subscribe({
-      next: (result) => set({ loading: false, overclocks: result }),
-    });
-    return () => querySubscription.unsubscribe();
-  },
-  { loading: true }
-);
+>({ loading: true }, (set) => {
+  const querySubscription = liveQuery(() => db.overclocks.toArray()).subscribe({
+    next: (result) => set({ loading: false, overclocks: result }),
+  });
+  return () => querySubscription.unsubscribe();
+});

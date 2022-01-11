@@ -11,7 +11,6 @@ import type {
 } from '$lib/types/pickaxes';
 import type { Miner } from '$lib/types/miner';
 import type { MinerWeapon } from '$lib/types/weapons';
-import { readable } from 'svelte/store';
 
 export type OverclockEntry = {
   weapon: MinerWeapon<Miner>;
@@ -76,4 +75,4 @@ class AppDatabase extends Dexie {
   clearAll = () => Promise.all(this.tables.map((t) => t.clear()));
 }
 
-export const db = readable(new AppDatabase());
+export const db = new AppDatabase();

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Card from '$lib/components/Card.svelte';
+  import Card, { ActiveState } from '$lib/components/Card.svelte';
   import type { Overclock } from '$lib/types/overclocks';
   import { overclocks } from '$lib/stores/overclocks';
   import { db } from '$lib/db';
@@ -14,26 +14,40 @@
   export let overclock: Overclock;
   export let weapon: MinerWeapon<T>;
 
-  $: active =
-    $overclocks.loading === false &&
-    $overclocks.overclocks.some(
+  let active = ActiveState.Inactive;
+  $: if ($overclocks.loading === false) {
+    const oc = $overclocks.overclocks.find(
       (oc) => oc.weapon === weapon && oc.name === overclock.name
     );
+    if (oc) {
+      active = oc.isForged ? ActiveState.Active : ActiveState.Partial;
+    } else {
+      active = ActiveState.Inactive;
+    }
+  }
 
   function toggle() {
-    if (active) {
-      db.overclocks
-        .where({
+    switch (active) {
+      case ActiveState.Inactive:
+        db.overclocks.add({
           weapon,
           name: overclock.name,
-        })
-        .delete();
-    } else {
-      db.overclocks.add({
-        weapon,
-        name: overclock.name,
-        isForged: true,
-      });
+          isForged: false,
+        });
+        break;
+      case ActiveState.Partial:
+        db.overclocks
+          .where({ weapon, name: overclock.name })
+          .modify({ isForged: true });
+        break;
+      case ActiveState.Active:
+        db.overclocks
+          .where({
+            weapon,
+            name: overclock.name,
+          })
+          .delete();
+        break;
     }
   }
 </script>

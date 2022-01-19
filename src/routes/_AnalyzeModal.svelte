@@ -1,12 +1,46 @@
 <script lang="ts">
+  import { getArmorPaintJobsFromSaveFile } from '$lib/analyze/getArmorPaintjobsFromSaveFile';
+  import { getCommonArmorPaintJobsFromSaveFile } from '$lib/analyze/getCommonArmorPaintjobsFromSaveFile';
+  import { getFrameworksFromSaveFile } from '$lib/analyze/getFrameworksFromSaveFile';
+  import { getOverclocksFromSaveFile } from '$lib/analyze/getOverclocksFromSaveFile';
+  import { getPickaxesFromSaveFile } from '$lib/analyze/getPickaxesFromSaveFile';
+  import { getPickaxeUniquesFromSaveFile } from '$lib/analyze/getPickaxeUniquesFromSaveFile';
   import Modal from '$lib/components/Modal.svelte';
+  import { db } from '$lib/db';
   import init, { parse_save_file } from 'drg-save-parser';
+  import { createEventDispatcher } from 'svelte';
 
+  const dispatch = createEventDispatcher();
+
+  // Parse the selected save file and update the internal database
   async function parseSaveFile(file: File) {
     await init();
     const saveFile = await parse_save_file(file);
+
+    // Extract the relevant information from the parsed save file
+    const overclocks = getOverclocksFromSaveFile(saveFile);
+    const frameworks = getFrameworksFromSaveFile(saveFile);
+    const pickaxes = getPickaxesFromSaveFile(saveFile);
+    const pickaxeUniques = getPickaxeUniquesFromSaveFile(saveFile);
+    const armorPaintjobs = getArmorPaintJobsFromSaveFile(saveFile);
+    const commonArmorPaintjobs = getCommonArmorPaintJobsFromSaveFile(saveFile);
+
+    // Update the store with the new save file data
+    await db.transaction('rw', db.tables, async () => {
+      await db.clearAll();
+      await db.overclocks.bulkAdd(overclocks);
+      await db.frameworks.bulkAdd(frameworks);
+      await db.pickaxes.bulkAdd(pickaxes);
+      await db.pickaxeUniques.bulkAdd(pickaxeUniques);
+      await db.armorPaintjobs.bulkAdd(armorPaintjobs);
+      await db.commonArmorPaintjobs.bulkAdd(commonArmorPaintjobs);
+    });
+
+    dispatch('close');
   }
 
+  // Open the file picker dialog and wait for the user to select their save
+  // file.
   function openFile() {
     let input = document.createElement('input');
     input.type = 'file';

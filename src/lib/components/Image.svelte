@@ -2,8 +2,8 @@
   export let src: ImgSrc;
   export let alt: string;
 
-  function isPNG(pet: ImgSrc): pet is PNGSrc {
-    return (pet as PNGSrc).png !== undefined;
+  function isPNG(img: ImgSrc): img is PNGSrc {
+    return (img as PNGSrc).png !== undefined;
   }
 </script>
 

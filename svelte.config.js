@@ -1,4 +1,5 @@
 import preprocess from 'svelte-preprocess';
+import wasmPack from 'vite-plugin-wasm-pack';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,7 +11,10 @@ const config = {
 
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte'
+		target: '#svelte',
+		vite: {
+			plugins: [ wasmPack([], ['drg-save-parser']) ]
+		}
 	}
 };
 

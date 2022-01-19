@@ -2,8 +2,11 @@
   import { page } from '$app/stores';
   import { Assignment } from '$lib/assets/other';
   import Image from '$lib/components/Image.svelte';
+  import { createEventDispatcher } from 'svelte';
 
   $: path = $page.path;
+
+  const dispatch = createEventDispatcher();
 </script>
 
 <header class="px-6 pt-6">
@@ -22,6 +25,10 @@
     <a href="frameworks" class:active={path === '/frameworks'}>Frameworks</a>
     <a href="armor" class:active={path === '/armor'}>Armor</a>
     <a href="pickaxes" class:active={path === '/pickaxes'}>Pickaxes</a>
+    <div class="grow" />
+    <button class="justify-self-end" on:click={() => dispatch('analyze')}
+      >Analyze</button
+    >
   </nav>
 </header>
 

@@ -1,27 +1,25 @@
 <script lang="ts">
   import Card, { ActiveState } from '$lib/components/Card.svelte';
-  import { armorPaintjobs } from '$lib/stores/armorPaintjobs';
+  import { commonArmorPaintjobs } from '$lib/stores/commonArmorPaintjobs';
   import { db } from '$lib/db';
   import { Miner, MinerColor } from '$lib/types/miner';
   import Image from '$lib/components/Image.svelte';
-  import type { ArmorPaintjob } from '$lib/types/armor';
+  import type { CommonArmorPaintjob } from '$lib/types/armor';
 
-  export let miner: Miner;
-  export let paintjob: ArmorPaintjob;
+  export let paintjob: CommonArmorPaintjob;
 
   let active = false;
-  $: if ($armorPaintjobs.loading === false) {
+  $: if ($commonArmorPaintjobs.loading === false) {
     active =
-      $armorPaintjobs.paintjobs.find(
-        (p) => p.miner === miner && p.name === paintjob.name
-      ) !== undefined;
+      $commonArmorPaintjobs.paintjobs.find((p) => p.name === paintjob.name) !==
+      undefined;
   }
 
   function toggle() {
     if (active) {
-      db.armorPaintjobs.where({ miner, name: paintjob.name }).delete();
+      db.commonArmorPaintjobs.where({ name: paintjob.name }).delete();
     } else {
-      db.armorPaintjobs.add({ miner, name: paintjob.name });
+      db.commonArmorPaintjobs.add({ name: paintjob.name });
     }
   }
 </script>
@@ -29,7 +27,7 @@
 <Card
   active={active ? ActiveState.Active : ActiveState.Inactive}
   on:click={toggle}
-  --body-active-background-color={MinerColor[miner]}
+  --body-active-background-color="#A8A8A8"
 >
   <div class="relative h-[100px] w-[100px]">
     <div

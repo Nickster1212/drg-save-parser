@@ -2,7 +2,6 @@
   import Card, { ActiveState } from '$lib/components/Card.svelte';
   import { commonArmorPaintjobs } from '$lib/stores/commonArmorPaintjobs';
   import { db } from '$lib/db';
-  import { Miner, MinerColor } from '$lib/types/miner';
   import Image from '$lib/components/Image.svelte';
   import type { CommonArmorPaintjob } from '$lib/types/armor';
 

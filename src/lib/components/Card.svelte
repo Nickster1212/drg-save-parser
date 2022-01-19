@@ -7,7 +7,7 @@
 </script>
 
 <script lang="ts">
-  export let title: string;
+  export let title: string | undefined = undefined;
   export let active: ActiveState;
 </script>
 
@@ -16,14 +16,16 @@
   role="button"
   on:click
 >
-  <div
-    class="font-bold border-gray-500 truncate transition-all"
-    class:inactive={active === ActiveState.Inactive}
-    class:active={active === ActiveState.Active}
-    class:partial={active === ActiveState.Partial}
-  >
-    {title}
-  </div>
+  {#if title}
+    <div
+      class="font-bold border-gray-500 truncate transition-all"
+      class:inactive={active === ActiveState.Inactive}
+      class:active={active === ActiveState.Active}
+      class:partial={active === ActiveState.Partial}
+    >
+      {title}
+    </div>
+  {/if}
   <div class="flex content-center justify-center p-4">
     <slot />
   </div>

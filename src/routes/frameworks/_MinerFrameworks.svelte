@@ -7,23 +7,21 @@
   import WeaponDivider from '$lib/components/WeaponDivider.svelte';
   import Image from '$lib/components/Image.svelte';
   import { overclocks } from '$lib/stores/overclocks';
-  import OverclockCard from './_OverclockCard.svelte';
+  import FrameworkCard from './_FrameworkCard.svelte';
   import { derived } from 'svelte/store';
+  import { Frameworks } from '$lib/types/frameworks';
+  import { frameworks } from '$lib/stores/frameworks';
 
   export let miner: Miner;
 
   const weapons: readonly MinerWeapon<Miner>[] = MinerWeapons[miner];
-  const acquired_overclock_count = derived(overclocks, ($overclocks) => {
-    if ($overclocks.loading === true) return 0;
-    return $overclocks.overclocks.filter((overclock) =>
-      weapons.includes(overclock.weapon)
-    ).length;
+  const acquired_framework_count = derived(frameworks, ($frameworks) => {
+    if ($frameworks.loading === true) return 0;
+    return $frameworks.frameworks.filter((f) => weapons.includes(f.weapon))
+      .length;
   });
-  const overclock_count = weapons.reduce(
-    (acc, weapon) => acc + Overclocks[weapon].length,
-    0
-  );
-  $: progress = Math.round(($acquired_overclock_count / overclock_count) * 100);
+  const framework_count = weapons.reduce((acc) => acc + Frameworks.length, 0);
+  $: progress = Math.round(($acquired_framework_count / framework_count) * 100);
 </script>
 
 <Section>
@@ -46,8 +44,8 @@
   <svelte:fragment>
     {#each MinerWeapons[miner] as weapon}
       <WeaponDivider {weapon} />
-      {#each Overclocks[weapon] as overclock}
-        <OverclockCard {miner} {weapon} {overclock} />
+      {#each Frameworks as framework}
+        <FrameworkCard {miner} {weapon} {framework} />
       {/each}
     {/each}
   </svelte:fragment>

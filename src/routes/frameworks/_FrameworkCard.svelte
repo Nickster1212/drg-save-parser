@@ -2,7 +2,7 @@
   import Card, { ActiveState } from '$lib/components/Card.svelte';
   import { frameworks } from '$lib/stores/frameworks';
   import type { MinerWeapon } from '$lib/types/weapons';
-  import { Miner, MinerColor, MinerColorContrastText } from '$lib/types/miner';
+  import { Miner, MinerColor } from '$lib/types/miner';
   import Image from '$lib/components/Image.svelte';
   import { Framework, FrameworkIcon } from '$lib/types/frameworks';
   import { db } from '$lib/db';
@@ -32,8 +32,7 @@
 <Card
   active={active ? ActiveState.Active : ActiveState.Inactive}
   on:click={toggle}
-  --active-background-color={MinerColor[miner]}
-  --active-text-color={MinerColorContrastText[miner]}
+  --body-active-background-color={MinerColor[miner]}
 >
   <div class="relative h-[100px] w-[100px]">
     <div

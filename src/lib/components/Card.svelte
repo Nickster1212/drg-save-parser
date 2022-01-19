@@ -26,7 +26,10 @@
       {title}
     </div>
   {/if}
-  <div class="flex content-center justify-center p-4">
+  <div
+    class="flex content-center justify-center p-4 transition-all"
+    class:body-active={active === ActiveState.Active}
+  >
     <slot />
   </div>
 </div>
@@ -48,5 +51,9 @@
     padding: 8px;
     border-width: 2px;
     border-color: var(--active-background-color);
+  }
+
+  .body-active {
+    background-color: var(--body-active-background-color);
   }
 </style>

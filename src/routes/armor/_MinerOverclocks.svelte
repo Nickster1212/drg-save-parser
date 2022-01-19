@@ -4,7 +4,7 @@
   import { MinerWeapon, MinerWeapons } from '$lib/types/weapons';
   import { Overclocks } from '$lib/types/overclocks';
   import SectionHeaderProgress from '$lib/section/SectionHeaderProgress.svelte';
-  import WeaponDivider from '$lib/components/WeaponDivider.svelte';
+  import WeaponDivider from './_WeaponDivider.svelte';
   import Image from '$lib/components/Image.svelte';
   import { overclocks } from '$lib/stores/overclocks';
   import OverclockCard from './_OverclockCard.svelte';

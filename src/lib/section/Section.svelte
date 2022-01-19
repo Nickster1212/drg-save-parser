@@ -14,7 +14,7 @@
   </SectionHeader>
   {#if expanded}
     <div
-      class="p-2 border-gray-500 border-t grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2"
+      class="p-2 border-gray-500 border-t grid 2xl:grid-cols-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2"
       transition:slide|local
     >
       <slot />

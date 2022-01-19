@@ -4,26 +4,22 @@
   import { MinerWeapon, MinerWeapons } from '$lib/types/weapons';
   import { Overclocks } from '$lib/types/overclocks';
   import SectionHeaderProgress from '$lib/section/SectionHeaderProgress.svelte';
-  import WeaponDivider from './_WeaponDivider.svelte';
   import Image from '$lib/components/Image.svelte';
   import { overclocks } from '$lib/stores/overclocks';
-  import OverclockCard from './_OverclockCard.svelte';
+  import ArmorPaintjobCard from './_ArmorPaintjobCard.svelte';
   import { derived } from 'svelte/store';
+  import { ArmorPaintjobs } from '$lib/types/armor';
+  import { armorPaintjobs } from '$lib/stores/armorPaintjobs';
 
   export let miner: Miner;
 
-  const weapons: readonly MinerWeapon<Miner>[] = MinerWeapons[miner];
-  const acquired_overclock_count = derived(overclocks, ($overclocks) => {
-    if ($overclocks.loading === true) return 0;
-    return $overclocks.overclocks.filter((overclock) =>
-      weapons.includes(overclock.weapon)
-    ).length;
+  const acquired_paintjob_count = derived(armorPaintjobs, ($armorPaintjobs) => {
+    if ($armorPaintjobs.loading === true) return 0;
+    return $armorPaintjobs.paintjobs.filter((p) => p.miner === miner).length;
   });
-  const overclock_count = weapons.reduce(
-    (acc, weapon) => acc + Overclocks[weapon].length,
-    0
+  $: progress = Math.round(
+    ($acquired_paintjob_count / ArmorPaintjobs[miner].length) * 100
   );
-  $: progress = Math.round(($acquired_overclock_count / overclock_count) * 100);
 </script>
 
 <Section>
@@ -44,11 +40,8 @@
     </div>
   </svelte:fragment>
   <svelte:fragment>
-    {#each MinerWeapons[miner] as weapon}
-      <WeaponDivider {weapon} />
-      {#each Overclocks[weapon] as overclock}
-        <OverclockCard {miner} {weapon} {overclock} />
-      {/each}
+    {#each ArmorPaintjobs[miner] as paintjob}
+      <ArmorPaintjobCard {miner} {paintjob} />
     {/each}
   </svelte:fragment>
 </Section>
